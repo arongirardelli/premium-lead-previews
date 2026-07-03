@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Prévia estratégica — La Crosta Forneria",
-  description: "Prévia demonstrativa de uma landing page estratégica para organizar reputação, cardápio, unidades, reservas e WhatsApp da La Crosta Forneria.",
+  title: "La Crosta Forneria — Pizza Napolitana e Massas Artesanais",
+  description: "A autêntica pizza napolitana de São Paulo. Experiência italiana completa para Santana, Água Fria e Perdizes.",
   robots: {
     index: false,
     follow: false,
@@ -15,194 +16,176 @@ export const metadata: Metadata = {
   }
 };
 
-const WHATSAPP_LINK = "https://wa.me/5511991865038";
-const WHATSAPP_FINAL_LINK = "https://wa.me/5511991865038?text=Oi%2C%20vi%20a%20pr%C3%A9via%20da%20p%C3%A1gina%20da%20La%20Crosta%20e%20quero%20entender%20melhor.";
+const WHATSAPP_SANTANA = "https://wa.me/5511991865038?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20unidade%20Santana.";
+const WHATSAPP_AGUA_FRIA = "https://wa.me/5511991865038?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20unidade%20%C3%81gua%20Fria.";
+const WHATSAPP_PERDIZES = "https://wa.me/5511991865038?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20unidade%20Perdizes.";
 
 export default function LaCrostaPage() {
   return (
     <div className={styles.page}>
       
-      {/* 1. Hero */}
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <p style={{ fontSize: "0.875rem", fontWeight: "bold", color: "var(--red)", textTransform: "uppercase", marginBottom: "1rem" }}>
-            Prévia estratégica demonstrativa
-          </p>
-          <h1 className={`${styles.title} ${styles.heroTitle}`}>
-            Pizza napolitana e massas artesanais em uma forneria reconhecida em São Paulo
+      {/* HEADER */}
+      <header className={styles.header}>
+        <div className={`${styles.container} ${styles.headerInner}`}>
+          <h1 className={`${styles.serif} ${styles.logo}`}>
+            La<span>Crosta</span>
           </h1>
+          <Link href={WHATSAPP_SANTANA} target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnPrimary}`} style={{ padding: '0.8rem 1.5rem', fontSize: '0.7rem' }}>
+            Fazer um Pedido
+          </Link>
+        </div>
+      </header>
+
+      {/* HERO SECTION */}
+      <section className={styles.hero}>
+        <div className={styles.heroBg}></div>
+        <div className={styles.heroGradient}></div>
+        <div className={`${styles.container} ${styles.heroContent}`}>
+          <span className={styles.heroLabel}>São Paulo, SP</span>
+          <h2 className={`${styles.serif} ${styles.heroTitle}`}>
+            A autêntica <i>pizza napolitana</i> feita com excelência.
+          </h2>
           <p className={styles.heroSubtitle}>
-            Uma experiência italiana com sabor, ambiente e autoridade — da La Crosta para Santana, Água Fria e Perdizes.
+            Uma experiência italiana que une ambiente sofisticado, massas artesanais e a verdadeira paixão pela gastronomia. O sabor premiado da La Crosta servido para Santana, Água Fria e Perdizes.
           </p>
           <div className={styles.heroActions}>
-            <a href={WHATSAPP_LINK} className={`${styles.btn} ${styles.btnPrimary}`} target="_blank" rel="noopener noreferrer">
-              Pedir pelo WhatsApp
-            </a>
-            <a href="#estrutura" className={`${styles.btn} ${styles.btnOutline}`}>
-              Ver estrutura sugerida
-            </a>
-            <a href="#unidades" className={`${styles.btn} ${styles.btnOutline}`} style={{ border: "none", textDecoration: "underline" }}>
-              Escolher unidade
-            </a>
+            <Link href={WHATSAPP_SANTANA} target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnPrimary}`}>
+              Reservar Mesa
+            </Link>
+            <Link href="https://linktr.ee/lacrosta" target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnOutline}`}>
+              Ver Cardápio Completo
+            </Link>
           </div>
+        </div>
+        <div className={styles.stamp}>
+          <strong>2x</strong>
+          <span>Veja SP</span>
         </div>
       </section>
 
-      {/* 2. Faixa de Autoridade */}
+      {/* AUTHORITY RIBBON */}
       <section className={styles.authority}>
-        <div className={styles.container}>
-          <h2 className={`${styles.title} ${styles.authorityTitle}`}>
-            Autoridade que já existe — organizada de forma mais clara
-          </h2>
-          <div className={styles.authorityGrid}>
-            <div className={styles.authorityCard}>
-              <strong>Bicampeã Veja 23/24</strong>
-              <span>Melhor Pizzaria de SP</span>
-            </div>
-            <div className={styles.authorityCard}>
-              <strong>4,9/5 no Google</strong>
-              <span>Reputação forte para decisão rápida</span>
-            </div>
-            <div className={styles.authorityCard}>
-              <strong>1.558 avaliações</strong>
-              <span>Prova social que merece destaque</span>
-            </div>
-            <div className={styles.authorityCard}>
-              <strong>3 regiões</strong>
-              <span>Santana, Água Fria e Perdizes</span>
-            </div>
+        <div className={`${styles.container} ${styles.authorityGrid}`}>
+          <div className={styles.authorityItem}>
+            <strong className={styles.serif}>Bicampeã</strong>
+            <span>Veja Comer & Beber</span>
+          </div>
+          <div className={styles.authorityItem}>
+            <strong className={styles.serif}>4,9</strong>
+            <span>Avaliação no Google</span>
+          </div>
+          <div className={styles.authorityItem}>
+            <strong className={styles.serif}>+1.500</strong>
+            <span>Clientes Satisfeitos</span>
+          </div>
+          <div className={styles.authorityItem}>
+            <strong className={styles.serif}>3</strong>
+            <span>Unidades em SP</span>
           </div>
         </div>
       </section>
 
-      {/* 3. Oportunidade Digital */}
-      <section className={styles.opportunity}>
-        <div className={styles.opportunityContainer}>
-          <h2 className={`${styles.title} ${styles.opportunityTitle}`}>
-            A marca já é forte. A jornada digital pode ficar mais clara.
-          </h2>
-          <p className={styles.opportunityText}>
-            Hoje, a experiência do cliente passa por links separados para cardápio, reservas, delivery, iFood, WhatsApp e localização. Uma página própria poderia organizar esses caminhos em uma experiência mais bonita, objetiva e fácil de converter.
-          </p>
-          <ul className={styles.opportunityList}>
-            <li>Reputação forte, mas dispersa entre canais.</li>
-            <li>Muitas ações possíveis, mas sem uma narrativa única.</li>
-            <li>Autoridade e unidades podem aparecer com mais destaque.</li>
-            <li>WhatsApp, reserva e cardápio podem ter menos atrito.</li>
-          </ul>
-          <a href="#mockup" className={`${styles.btn} ${styles.btnPrimary}`} style={{ backgroundColor: "var(--gold)", color: "var(--espresso)" }}>
-            Ver demonstração da estrutura ideal
-          </a>
-        </div>
-      </section>
-
-      {/* 4. Como poderia ficar */}
-      <section id="mockup" className={styles.mockupSection}>
-        <div className={styles.mockupContainer}>
-          <h2 className={`${styles.title} ${styles.mockupTitle}`}>
-            Uma página própria para transformar autoridade em ação
-          </h2>
-          
-          <div className={styles.mockupWindow}>
-            <div className={styles.mockupBrand}>La Crosta Forneria</div>
-            <div className={styles.mockupBadge}>Bicampeã Veja 23/24</div>
-            <div className={styles.mockupHeadline}>Pizza napolitana e massas artesanais</div>
-            
-            <div className={styles.mockupActions}>
-              <div className={`${styles.btn} ${styles.btnPrimary}`}>Pedir pelo WhatsApp</div>
-              <div className={`${styles.btn} ${styles.btnSecondary}`}>Reservar mesa</div>
-              <div className={`${styles.btn}`} style={{ border: "1px solid var(--green)", color: "var(--green)" }}>Escolher unidade</div>
-            </div>
-            
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", opacity: 0.8 }}>
-              <div style={{ background: "#fff", padding: "1rem", borderRadius: "8px", fontSize: "0.75rem", border: "1px solid rgba(0,0,0,0.05)" }}>
-                <strong style={{ color: "var(--red)", display: "block" }}>4,9/5 Google</strong>
-                1.558 avaliações
-              </div>
-              <div style={{ background: "#fff", padding: "1rem", borderRadius: "8px", fontSize: "0.75rem", border: "1px solid rgba(0,0,0,0.05)" }}>
-                <strong style={{ color: "var(--green)", display: "block" }}>3 Unidades</strong>
-                SP
-              </div>
-            </div>
+      {/* THE EXPERIENCE */}
+      <section className={styles.experience}>
+        <div className={`${styles.container} ${styles.experienceGrid}`}>
+          <div className={styles.experienceImageWrapper}>
+            <img 
+              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop" 
+              alt="Ambiente rústico e sofisticado" 
+              className={styles.experienceImage}
+            />
+          </div>
+          <div className={styles.experienceContent}>
+            <span className={styles.sectionLabel}>A Experiência</span>
+            <h2 className={`${styles.serif} ${styles.sectionTitle}`}>
+              O sabor que respeita o rigor da tradição.
+            </h2>
+            <p>
+              Na La Crosta Forneria, cada pizza é tratada como uma obra de arte. Nossa massa, de longa fermentação, atinge a textura napolitana perfeita: bordas majestosamente aeradas e um miolo incrivelmente macio.
+            </p>
+            <p>
+              Buscamos os melhores ingredientes, de pequenos produtores artesanais locais até a mais autêntica farinha importada italiana, para entregar a você não apenas uma refeição, mas uma memória gastronômica de altíssimo padrão.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 5. Cardápio Demonstrativo */}
-      <section id="estrutura" className={styles.menuSection}>
+      {/* MENU HIGHLIGHTS */}
+      <section className={styles.menu}>
         <div className={styles.container}>
-          <h2 className={`${styles.title} ${styles.menuTitle}`}>
-            Cardápio e experiência mais fáceis de entender
-          </h2>
-          <p className={styles.menuSubtitle}>
-            Sem precisar mostrar tudo de uma vez, a página pode guiar o cliente pelos principais caminhos: pizzas napolitanas, massas artesanais, reservas, delivery e unidades.
-          </p>
-          
-          <div className={styles.menuGrid}>
-            <div className={styles.menuCard}><h3>Pizzas napolitanas</h3></div>
-            <div className={styles.menuCard}><h3>Massas artesanais</h3></div>
-            <div className={styles.menuCard}><h3>Reservas</h3></div>
-            <div className={styles.menuCard}><h3>Delivery / pedido</h3></div>
-            <div className={styles.menuCard}><h3>Unidades</h3></div>
+          <div className={styles.menuHeader}>
+            <span className={styles.sectionLabel}>Gastronomia</span>
+            <h2 className={`${styles.serif} ${styles.sectionTitle}`}>Nossas Especialidades</h2>
+          </div>
+          <div className={styles.menuList}>
+            <div className={styles.menuItem}>
+              <h3 className={styles.serif}>Pizza Napolitana</h3>
+              <p>Massa leve de longa fermentação, assada em altíssima temperatura, com ingredientes que derretem na boca.</p>
+            </div>
+            <div className={styles.menuItem}>
+              <h3 className={styles.serif}>Massas Artesanais</h3>
+              <p>O rigor italiano no preparo, acompanhado de molhos encorpados e receitas clássicas da nossa forneria.</p>
+            </div>
+            <div className={styles.menuItem}>
+              <h3 className={styles.serif}>Carta de Vinhos</h3>
+              <p>Rótulos cuidadosamente selecionados para harmonizar perfeitamente com cada um de nossos pratos.</p>
+            </div>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '4rem' }}>
+            <Link href="https://linktr.ee/lacrosta" target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnPrimary}`}>
+              Explorar Menu
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 6. Unidades */}
-      <section id="unidades" className={styles.locations}>
+      {/* LOCATIONS */}
+      <section className={styles.locations}>
         <div className={styles.container}>
-          <h2 className={`${styles.title} ${styles.locationsTitle}`}>
-            Escolha a unidade mais próxima
-          </h2>
-          <p className={styles.locationsSubtitle}>
-            A experiência La Crosta aparece em regiões estratégicas de São Paulo.
-          </p>
-          
+          <span className={styles.sectionLabel} style={{ color: '#C99245' }}>Endereços</span>
+          <h2 className={`${styles.serif} ${styles.sectionTitle}`} style={{ color: '#FFF8F0' }}>Nossas Casas</h2>
           <div className={styles.locationsGrid}>
-            <div className={styles.locationCard}>
-              <h3>Santana</h3>
-              <p>R. Pontins, 52</p>
-              <div className={styles.locationActions}>
-                <a href={WHATSAPP_LINK} className={`${styles.btn} ${styles.btnPrimary}`} target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-              </div>
+            <div className={styles.locationItem}>
+              <h3 className={styles.serif}>Santana</h3>
+              <p>R. Ponta Porã, 527<br/>Aberto hoje até 23h</p>
+              <Link href={WHATSAPP_SANTANA} target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnOutline} ${styles.btnLocation}`}>
+                Pedir no WhatsApp
+              </Link>
             </div>
-            
-            <div className={styles.locationCard}>
-              <h3>Água Fria</h3>
-              <p>R. Ismael Neri, 306</p>
-              <div className={styles.locationActions}>
-                <a href={WHATSAPP_LINK} className={`${styles.btn} ${styles.btnPrimary}`} target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-              </div>
+            <div className={styles.locationItem}>
+              <h3 className={styles.serif}>Água Fria</h3>
+              <p>R. Água Fria, 439<br/>Aberto hoje até 23h</p>
+              <Link href={WHATSAPP_AGUA_FRIA} target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnOutline} ${styles.btnLocation}`}>
+                Pedir no WhatsApp
+              </Link>
             </div>
-            
-            <div className={styles.locationCard}>
-              <h3>Perdizes</h3>
-              <p>R. Caraíbas, 389</p>
-              <div className={styles.locationActions}>
-                <a href={WHATSAPP_LINK} className={`${styles.btn} ${styles.btnPrimary}`} target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-              </div>
+            <div className={styles.locationItem}>
+              <h3 className={styles.serif}>Perdizes</h3>
+              <p>R. Diana, 120<br/>Aberto hoje até 23h</p>
+              <Link href={WHATSAPP_PERDIZES} target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnOutline} ${styles.btnLocation}`}>
+                Pedir no WhatsApp
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. CTA Final */}
-      <section className={styles.finalCta}>
-        <div className={styles.finalCtaContainer}>
-          <h2 className={`${styles.title} ${styles.finalCtaTitle}`}>
-            Essa é apenas uma prévia. A ideia completa pode ficar ainda mais alinhada à marca.
-          </h2>
-          <p className={styles.finalCtaText}>
-            A proposta aqui é mostrar como a autoridade que a La Crosta já tem poderia ser organizada em uma página própria, mais clara, bonita e estratégica para pedidos, reservas e WhatsApp.
-          </p>
-          <a href={WHATSAPP_FINAL_LINK} className={`${styles.btn} ${styles.finalCtaBtn}`} target="_blank" rel="noopener noreferrer">
-            Posso te mostrar a versão completa?
-          </a>
-        </div>
-      </section>
-
+      {/* OFFICIAL FOOTER */}
       <footer className={styles.footer}>
-        Prévia estratégica demonstrativa criada por Aron Girardelli. Não se trata de uma página oficial da La Crosta Forneria.
+        <div className={styles.container}>
+          <div className={`${styles.serif} ${styles.footerLogo}`}>
+            La<span>Crosta</span>
+          </div>
+          <div className={styles.footerNav}>
+            <Link href="https://linktr.ee/lacrosta" target="_blank" rel="noopener noreferrer">Cardápio</Link>
+            <Link href="https://www.instagram.com/lacrostaforneria/" target="_blank" rel="noopener noreferrer">Instagram</Link>
+            <Link href={WHATSAPP_SANTANA} target="_blank" rel="noopener noreferrer">Reservas</Link>
+            <Link href={WHATSAPP_SANTANA} target="_blank" rel="noopener noreferrer">Trabalhe Conosco</Link>
+          </div>
+          <div className={styles.copyright}>
+            &copy; {new Date().getFullYear()} La Crosta Forneria. Todos os direitos reservados.
+          </div>
+        </div>
       </footer>
     </div>
   );
