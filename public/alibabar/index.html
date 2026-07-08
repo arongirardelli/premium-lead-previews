@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{{const H=new URLSearchParams(location.search).get("theme");if(H==="light"||H==="dark"){document.documentElement.dataset.theme=H}}{const H=()=>{try{if(document.querySelector('meta[name="color-scheme"]'))return;const A=getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();if(A&&A!=="normal")return;const M=(L)=>{if(!L)return null;const F=getComputedStyle(L).backgroundColor.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+%?))?\s*\)$/);if(!F)return null;const Y=F[4]==null?1:parseFloat(F[4])/(F[4].endsWith("%")?100:1);if(Y<0.99)return null;return[+F[1],+F[2],+F[3]]};const j=M(document.body)||M(document.documentElement);if(!j)return;const x=(L)=>{const F=L/255;return F<=0.04045?F/12.92:((F+0.055)/1.055)**2.4};const G=0.2126*x(j[0])+0.7152*x(j[1])+0.0722*x(j[2]);document.documentElement.style.setProperty("color-scheme",G<0.4?"dark":"light")}catch{}};if(document.readyState==="complete")H();else window.addEventListener("load",H)}var S=["https://claude.ai","https://preview.claude.ai","https://93d32b58-457b-44ce-b658-90d61c2c887f.claudeusercontent.com"];var v=true;var P=30000;var h=3000;document.addEventListener("DOMContentLoaded",()=>{const H=window.Babel;const A="om-src-id";if(H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[A])){H.registerPlugin(A,({types:G})=>({visitor:{JSXOpeningElement(L,F){const Y=L.node;if(Y.name&&Y.name.type==="JSXMemberExpression")return;for(let J=0;J<Y.attributes.length;J++){const V=Y.attributes[J];if(V.type==="JSXAttribute"&&V.name&&V.name.name==="data-om-id")return}const B=F.file&&F.file.opts&&F.file.opts.filename||"?";const w=Y.loc&&Y.loc.start;const z=`jsx:${B}:${Y.start??0}:${w?w.line:0}:${w?w.column+1:0}`;Y.attributes.push(G.jsxAttribute(G.jsxIdentifier("data-om-id"),G.stringLiteral(z)))}}}))}const M="om-text-extract";let j=false;if(v&&H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[M])){const G=window.React;if(G&&G.useSyncExternalStore&&G.createElement){j=true;const L={};const F=new Set;let Y=0;window.__omTextO=L;window.__omTextSet=(z)=>{for(const J in z){const V=z[J];if(V==null)delete L[J];else L[J]=V}Y++;F.forEach((J)=>J())};const B=(z)=>{F.add(z);return()=>F.delete(z)};const w=()=>Y;window.__OmT=function z(J){G.useSyncExternalStore(B,w,w);return G.createElement("span",{"data-om-text":J.i,className:"__om-t"},J.i in L?L[J.i]:J.children)};H.registerPlugin(M,({types:z})=>{const J={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const V={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const W=(Z,q)=>z.logicalExpression("??",z.memberExpression(z.logicalExpression("||",z.memberExpression(z.identifier("window"),z.identifier("__omTextO")),z.objectExpression([])),z.stringLiteral(Z),true),q);const Q=(Z)=>Z.file&&Z.file.opts&&Z.file.opts.filename||"?";const C=(Z)=>Z.file&&Z.file.code||"";const K=(Z,q)=>{const U=($)=>$&&$.start!=null&&$.end!=null&&($.type==="StringLiteral"||$.type==="TemplateLiteral"&&$.expressions.length===0)?[$.start,$.end]:null;const N=U(q);if(N)return N;if(q&&q.type==="Identifier"){const $=Z.scope.getBinding(q.name);if($&&$.constant&&$.path.node.type==="VariableDeclarator"){return U($.path.node.init)}}return null};const E=(Z,q,U)=>{const N=Z.node;let $=false;const R=(D,k)=>{$=true;return z.jsxElement(z.jsxOpeningElement(z.jsxIdentifier("__OmT"),[z.jsxAttribute(z.jsxIdentifier("i"),z.stringLiteral(D))],false),z.jsxClosingElement(z.jsxIdentifier("__OmT")),[k],false)};const X=N.children.map((D)=>{if(D.type==="JSXText"){if(D.start==null||D.end==null)return D;const k=U.slice(D.start,D.end);const f=k.length-k.trimStart().length;const I=k.length-k.trimEnd().length;if(f+I>=k.length)return D;return R(`txt:${q}:${D.start+f}:${D.end-I}`,D)}if(D.type==="JSXExpressionContainer"){const k=K(Z,D.expression);if(k)return R(`str:${q}:${k[0]}:${k[1]}`,D)}return D});if($)N.children=X};return{visitor:{JSXOpeningElement(Z,q){const U=Z.node;const N=Q(q);const $={};for(let R=0;R<U.attributes.length;R++){const X=U.attributes[R];if(X.type!=="JSXAttribute"||!X.name)continue;const D=X.name.name;if(!V[D])continue;if(!X.value||X.value.type!=="StringLiteral")continue;if(X.value.start==null||X.value.end==null)continue;const k=`txt:${N}:${X.value.start}:${X.value.end}`;$[D]=k;X.value=z.jsxExpressionContainer(W(k,z.stringLiteral(X.value.value)))}if(Object.keys($).length){U.attributes.push(z.jsxAttribute(z.jsxIdentifier("data-om-text-attrs"),z.stringLiteral(JSON.stringify($))))}},JSXElement(Z,q){const U=Z.node.openingElement;const N=U&&U.name&&U.name.name;if(N==="__OmT")return;if(typeof N==="string"&&J[N])return;E(Z,Q(q),C(q))},JSXFragment(Z,q){E(Z,Q(q),C(q))}}}})}}const x=j?["transform-react-jsx-source",A,M]:["transform-react-jsx-source",A];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((G,L)=>{const F=G.getAttribute("data-plugins")||"";const Y=x.filter((B)=>F.indexOf(B)<0);if(Y.length){G.setAttribute("data-plugins",F?`${F},${Y.join(",")}`:Y.join(","))}if(!G.hasAttribute("data-filename")){G.setAttribute("data-filename",G.getAttribute("src")||`inline-${L}`)}})});var _=window.parent;if(_&&_!==window){const H=(z,J)=>{try{_.postMessage({__omelette_log:true,type:z,data:J},"*")}catch{}};["log","warn","error"].forEach((z)=>{const J=console[z];console[z]=(...V)=>{const W=V.map((Q)=>{try{return typeof Q==="object"?JSON.stringify(Q):String(Q)}catch{try{return String(Q)}catch{return"[unstringifiable]"}}}).join(" ");H(z,W);J.apply(console,V)}});window.addEventListener("error",(z)=>{const J=z.target;if(J&&J!==window&&J.tagName){const V=J.src||J.href||"";H("resource_error",`${J.tagName} failed to load: ${V}`)}else{H("error",`${z.message||"Unknown error"} at ${z.filename||"?"}:${z.lineno||0}:${z.colno||0}`)}},true);window.addEventListener("unhandledrejection",(z)=>{const J=z.reason;const V=J instanceof Error?`${J.message} ${J.stack}`:String(J);H("error",`Unhandled rejection: ${V}`)});window.addEventListener("click",(z)=>{if(z.defaultPrevented||z.button!==0)return;if(z.metaKey||z.ctrlKey||z.shiftKey||z.altKey)return;const J=z.composedPath?z.composedPath():[];const V=["button","input","select","textarea","summary","label"];let W=null;for(const E of J){if(!(E instanceof Element))continue;if(E.localName==="a"){if(!(E instanceof HTMLAnchorElement))return;W=E;break}if(V.indexOf(E.localName)!==-1)return}if(!W)return;if(W.isContentEditable)return;const Q=W.closest("[contenteditable]");if(Q&&Q.getAttribute("contenteditable")!=="false")return;const C=(W.getAttribute("target")||"_self").toLowerCase();if(C!=="_self"&&C!=="_top"&&C!=="_parent")return;let K;try{K=new URL(W.href)}catch{return}if(K.protocol!=="http:"&&K.protocol!=="https:")return;if(location.origin==="null")return;if(K.origin===location.origin)return;z.preventDefault();window.open(K.href,"_blank","noopener,noreferrer")});const A=()=>{try{_.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(window.ResizeObserver)new ResizeObserver(A).observe(document.documentElement);const M=()=>{A();if(!document.querySelector('script[type="text/babel"],script[type="text/jsx"]'))return;const z=()=>document.getElementById("root")||document.querySelector("body > div[id]");const J=z()?.firstElementChild??null;let V=0;const W=()=>{const Q=z();if(Q&&Q.firstElementChild!==J||++V>30){A();return}setTimeout(W,100)};setTimeout(W,100)};if(document.readyState==="complete")M();else window.addEventListener("load",M);const j={};let x=0;const G=(z)=>new Promise((J,V)=>{if(!S.length){V(new Error("claude.complete: no parent origin"));return}const W=`c${++x}`;const Q=()=>setTimeout(()=>{delete j[W];V(new Error(`claude.complete: no data for ${P/1000}s`))},P);const C=Q();j[W]={resolve:J,reject:V,text:"",t:C,arm:Q};try{for(const K of S){_.postMessage({__om_api:true,id:W,body:z},K)}}catch(K){clearTimeout(C);delete j[W];V(K)}});const L=8;const F=async(z,J)=>{if(!Array.isArray(z.messages)){throw new Error("claude.complete: tools require a messages array")}const V=z.messages.slice();const W={...z,tools:z.tools.map((K)=>{if(K===null||typeof K!=="object")return K;const E={};for(const Z of Object.keys(K)){if(typeof K[Z]!=="function")E[Z]=K[Z]}return E})};const Q=W.tool_choice;const C=Q!=null&&(Q.type==="any"||Q.type==="tool")?{...W,tool_choice:Q.disable_parallel_tool_use!==undefined?{type:"auto",disable_parallel_tool_use:Q.disable_parallel_tool_use}:{type:"auto"}}:W;for(let K=0;K<L;K++){const E=await G({...K===0?W:C,messages:V});const Z=E.message;const q=Z&&Array.isArray(Z.content)?Z.content:null;const U=q?q.filter(($)=>$?.type==="tool_use"):[];if(Z?.stop_reason!=="tool_use"||U.length===0){return E.text}const N=[];for(const $ of U){const R=J.get($.name);if(!R){N.push({type:"tool_result",tool_use_id:$.id,content:`no handler for tool "${$.name}"`,is_error:true});continue}try{const X=await R($.input);const D=typeof X==="string"?X:w(X)??"";N.push({type:"tool_result",tool_use_id:$.id,content:D})}catch(X){N.push({type:"tool_result",tool_use_id:$.id,content:String(X?.message??X??"tool handler failed"),is_error:true})}}V.push({role:"assistant",content:q},{role:"user",content:N})}throw new Error(`claude.complete: exceeded ${L} tool turns`)};window.claude={complete(z){const J=z;if(J!==null&&typeof J==="object"&&Array.isArray(J.tools)&&J.tools.some((V)=>V!==null&&typeof V==="object"&&typeof V.run==="function")){const V=new Map;for(const W of J.tools){if(W!==null&&typeof W==="object"&&typeof W.run==="function"){V.set(String(W.name),W.run)}}return F(J,V)}return G(z).then((V)=>V.text)}};const Y={};let B=0;window.omelette={writeFile:(z,J)=>new Promise((V,W)=>{if(!S.length){V();return}const Q=`f${++B}`;const C=setTimeout(()=>{delete Y[Q];V()},h);Y[Q]={resolve:V,reject:W,t:C};try{for(const K of S){_.postMessage({__om_file:true,id:Q,op:"write",path:z,content:J},K)}}catch{clearTimeout(C);delete Y[Q];V()}})};const w=(z)=>{try{return JSON.stringify(z)}catch{return JSON.stringify(String(z))}};window.addEventListener("message",(z)=>{if(S.indexOf(z.origin)<0)return;if(z.source!==_)return;const J=z.data;if(!J)return;if(J.type==="omelette-preview-refresh"){if(typeof J.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(J.token))return;const Q=Math.max(1,Math.floor((J.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+J.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+Q;return}if(J.__om_file_r){const Q=Y[J.id];if(!Q)return;clearTimeout(Q.t);delete Y[J.id];if(J.ok)Q.resolve();else Q.reject(new Error(J.error||"write failed"));return}if(J.__om_api_r){const Q=j[J.id];if(!Q)return;if(J.error!=null){clearTimeout(Q.t);delete j[J.id];Q.reject(new Error(J.error));return}if(J.chunk!=null){clearTimeout(Q.t);Q.t=Q.arm();Q.text+=J.chunk;return}if(J.done){clearTimeout(Q.t);delete j[J.id];Q.resolve({text:J.text!=null?J.text:Q.text,message:J.message});return}return}if(!J.__om_eval)return;const V=J;const W=(Q)=>{z.source.postMessage({...Q,__om_eval_r:1,id:V.id},z.origin)};try{const Q=(0,eval)(V.code);if(Q&&typeof Q.then==="function"){Q.then((C)=>W({ok:1,v:w(C)}),(C)=>W({ok:0,e:String(C)}))}else{W({ok:1,v:w(Q)})}}catch(Q){W({ok:0,e:String(Q)})}})}})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,nocache">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Hanken+Grotesk:wght@400;500;600;700&family=Amiri:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#E7DBC4;}
+  *{box-sizing:border-box;}
+  a{color:#B0472B;text-decoration:none;}
+  a:hover{color:#8f381f;}
+  ::selection{background:#C98A2B;color:#2A211A;}
+  img{max-width:100%;}
+  @media(max-width:820px){
+    .menu-links{gap:14px!important;}
+    .menu-links a:not(:last-child){display:none!important;}
+    [style*="grid-template-columns"]{grid-template-columns:1fr!important;}
+    [style*="column-count"]{column-count:1!important;}
+    [style*="max-width:1160px"]{padding-left:22px!important;padding-right:22px!important;}
+    [style*="max-width:1000px"]{padding-left:22px!important;padding-right:22px!important;}
+    h1{font-size:44px!important;line-height:1.05!important;}
+    h2{font-size:32px!important;line-height:1.1!important;}
+  }
+</style>
+</helmet>
+<div style="font-family:'Hanken Grotesk',sans-serif;color:#2A211A;background:#E7DBC4;overflow-x:hidden;">
+
+  <!-- Top bar -->
+  <div style="position:sticky;top:0;z-index:40;background:rgba(231,219,196,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #d3c4a6;">
+    <div style="max-width:1160px;margin:0 auto;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:14px;color:#2A211A;">
+        <img src="assets/alibabar/logo.png" alt="Alibabar Cozinha Árabe" style="height:48px;width:auto;display:block;">
+        <span style="font-family:'Amiri',serif;font-size:18px;color:#2E4A34;">علي بابار</span>
+      </a>
+      <div class="menu-links" style="display:flex;align-items:center;gap:26px;font-size:14px;font-weight:500;">
+        <a href="sobre.html" style="color:#2A211A;">O Alibabar</a>
+        <a href="cardapio.html" style="color:#2A211A;">Cardápio</a>
+        <a href="#valores" style="color:#2A211A;">Valores</a>
+        <a href="#experiencia" style="color:#2A211A;">Noite árabe</a>
+        <a href="#dancarinas" style="color:#2A211A;">Dançarinas</a>
+        <a href="#visita" style="color:#2A211A;">Visita</a>
+        <a href="https://wa.me/551122830974" target="_blank" style="background:#B0472B;color:#F4ECDD;padding:10px 18px;border-radius:2px;font-weight:600;">Pedir no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section style="position:relative;max-width:1160px;margin:0 auto;padding:72px 40px 60px;display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;">
+    <div>
+      <div style="font-size:12px;letter-spacing:0.32em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:22px;">Culinária árabe · Santana desde a mesa da família</div>
+      <h1 style="font-family:'Marcellus',serif;font-size:66px;line-height:1.02;margin:0 0 24px;font-weight:400;">A tradição libanesa,<br>servida sem pressa.</h1>
+      <p style="font-size:18px;line-height:1.6;color:#4a3f30;max-width:460px;margin:0 0 34px;">Mezze, esfihas na chapa, shawarma e doces com água de flor de laranjeira. Rodízio, buffet e à la carte em Santana — ou na sua casa, pelo delivery.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="https://wa.me/551122830974" target="_blank" style="background:#B0472B;color:#F4ECDD;padding:16px 28px;border-radius:2px;font-weight:700;letter-spacing:0.03em;">Reservar mesa</a>
+        <a href="tel:+551122834008" style="border:1.5px solid #2A211A;color:#2A211A;padding:15px 28px;border-radius:2px;font-weight:600;letter-spacing:0.03em;">Pedidos · (11) 2283-4008</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:34px;">
+        <span style="color:#C98A2B;font-size:20px;letter-spacing:2px;">★★★★<span style="opacity:.4;">★</span></span>
+        <span style="font-size:14px;color:#4a3f30;"><strong style="color:#2A211A;">4,4</strong> no Google · <strong style="color:#2A211A;">2.085</strong> avaliações</span>
+      </div>
+    </div>
+    <div style="position:relative;height:540px;">
+      <div style="position:absolute;top:0;right:0;width:78%;height:78%;border-radius:4px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(42,33,26,.55);">
+        <img src="assets/alibabar/g07.jpg" alt="Mezze árabe do Alibabar" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="position:absolute;bottom:0;left:0;width:52%;height:46%;border-radius:4px;overflow:hidden;border:6px solid #E7DBC4;box-shadow:0 20px 40px -22px rgba(42,33,26,.6);">
+        <img src="assets/alibabar/g02.jpg" alt="Travessa árabe variada" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div style="position:absolute;top:12px;left:-4px;background:#2E4A34;color:#F4ECDD;padding:16px 20px;border-radius:3px;max-width:200px;box-shadow:0 16px 30px -18px rgba(42,33,26,.6);">
+        <div style="font-family:'Marcellus',serif;font-size:19px;line-height:1.1;">Feito à mão</div>
+        <div style="font-size:12px;opacity:.85;margin-top:4px;">Receitas de família, do jeito libanês.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div style="text-align:center;color:#C98A2B;font-size:22px;letter-spacing:8px;padding:8px 0;">✦ ❖ ✦</div>
+
+  <!-- Offer blocks -->
+  <section style="max-width:1160px;margin:0 auto;padding:40px 40px 20px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+
+      <div id="rodizio" style="background:#F4ECDD;border:1px solid #d3c4a6;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="height:210px;"><img src="assets/alibabar/g09.jpg" alt="Rodízio de pratos árabes" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:26px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:10px;">Na casa</div>
+          <div style="font-family:'Marcellus',serif;font-size:28px;margin-bottom:10px;">Rodízio</div>
+          <p style="font-size:14.5px;line-height:1.55;color:#4a3f30;flex:1;margin:0 0 18px;">Uma sequência à vontade de entradas frias e quentes, esfihas, kaftas e sobremesas — no ritmo da mesa árabe.</p>
+          <a href="https://wa.me/551122830974" target="_blank" style="font-weight:700;font-size:14px;">Reservar rodízio →</a>
+        </div>
+      </div>
+
+      <div id="buffet" style="background:#F4ECDD;border:1px solid #d3c4a6;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="height:210px;"><img src="assets/alibabar/g08.jpg" alt="Buffet de saladas e pratos árabes" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:26px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:10px;">No almoço</div>
+          <div style="font-family:'Marcellus',serif;font-size:28px;margin-bottom:10px;">Buffet</div>
+          <p style="font-size:14.5px;line-height:1.55;color:#4a3f30;flex:1;margin:0 0 18px;">Buffet variado de pratos árabes e do dia, montado no seu prato do jeito que você gosta. Ideal para o almoço em Santana.</p>
+          <a href="#visita" style="font-weight:700;font-size:14px;">Ver horários →</a>
+        </div>
+      </div>
+
+      <div id="delivery" style="background:#F4ECDD;border:1px solid #d3c4a6;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="height:210px;"><img src="assets/alibabar/g01.jpg" alt="Shawarma" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:26px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:11px;letter-spacing:0.26em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:10px;">Em casa</div>
+          <div style="font-family:'Marcellus',serif;font-size:28px;margin-bottom:10px;">Delivery</div>
+          <p style="font-size:14.5px;line-height:1.55;color:#4a3f30;flex:1;margin:0 0 18px;">O sabor da casa na sua porta. Peça esfihas, shawarma e combinados diretamente pelo WhatsApp.</p>
+          <a href="https://wa.me/551122830974" target="_blank" style="font-weight:700;font-size:14px;">Pedir no WhatsApp →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Heritage : D. Latife -->
+  <section style="background:#2A211A;color:#F4ECDD;margin-top:44px;">
+    <div style="max-width:1000px;margin:0 auto;padding:60px 40px;text-align:center;">
+      <div style="font-family:'Amiri',serif;font-size:22px;color:#E8C169;margin-bottom:18px;">علي بابار</div>
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#C98A2B;font-weight:700;margin-bottom:22px;">A receita de família</div>
+      <p style="font-family:'Marcellus',serif;font-size:30px;line-height:1.4;margin:0 auto;max-width:820px;font-weight:400;">“Todas as receitas são coordenadas por <span style="color:#E8C169;">D. Latife</span>, libanesa de sangue — aquele toque final que um árabe reconhece de longe e o brasileiro nunca mais esquece.”</p>
+      <div style="font-size:14px;color:#b8a98d;margin-top:24px;">De família de origem libanesa · Santana, São Paulo</div>
+    </div>
+  </section>
+
+  <!-- Stats band -->
+  <section style="background:#C98A2B;color:#2A211A;">
+    <div style="max-width:1160px;margin:0 auto;padding:52px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
+      <div>
+        <div style="font-family:'Amiri',serif;font-size:58px;line-height:1;">25<span style="font-size:26px;"> anos</span></div>
+        <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:10px;opacity:.85;">de Alibabar</div>
+      </div>
+      <div style="border-left:1px solid rgba(42,33,26,.22);">
+        <div style="font-family:'Amiri',serif;font-size:58px;line-height:1;">36k</div>
+        <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:10px;opacity:.85;">Seguidores</div>
+      </div>
+      <div style="border-left:1px solid rgba(42,33,26,.22);">
+        <div style="font-family:'Amiri',serif;font-size:58px;line-height:1;">17</div>
+        <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:10px;opacity:.85;">Reviews de influencers</div>
+      </div>
+      <div style="border-left:1px solid rgba(42,33,26,.22);">
+        <div style="font-family:'Amiri',serif;font-size:58px;line-height:1;">20+</div>
+        <div style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:10px;opacity:.85;">Na mídia</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Da nossa cozinha : dish mosaic -->
+  <section id="cozinha" style="max-width:1160px;margin:0 auto;padding:64px 40px 24px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:12px;">Da nossa cozinha</div>
+        <h2 style="font-family:'Marcellus',serif;font-size:44px;line-height:1.05;margin:0;font-weight:400;">Cada prato, uma memória<br>da mesa árabe</h2>
+      </div>
+      <p style="font-size:15px;line-height:1.6;color:#4a3f30;max-width:340px;margin:0;">Do quibe recheado às esfihas folheadas, do frango dourado às travessas de mezze — tudo preparado na casa, todos os dias.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:212px 212px;gap:16px;">
+      <div style="grid-row:span 2;position:relative;border-radius:4px;overflow:hidden;">
+        <img src="assets/alibabar/g05.jpg" alt="Esfihas e folheados árabes" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:20px 22px;background:linear-gradient(to top,rgba(42,33,26,.82),transparent);color:#F4ECDD;">
+          <div style="font-family:'Marcellus',serif;font-size:26px;">Esfihas &amp; folheados</div>
+          <div style="font-size:13px;opacity:.9;">Abertas e fechadas, na chapa</div>
+        </div>
+      </div>
+      <div style="position:relative;border-radius:4px;overflow:hidden;">
+        <img src="assets/alibabar/g04.jpg" alt="Frango à passarinho" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(to top,rgba(42,33,26,.82),transparent);color:#F4ECDD;">
+          <div style="font-family:'Marcellus',serif;font-size:20px;">Frango dourado</div>
+        </div>
+      </div>
+      <div style="position:relative;border-radius:4px;overflow:hidden;">
+        <img src="assets/alibabar/g03.jpg" alt="Quibe" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(to top,rgba(42,33,26,.82),transparent);color:#F4ECDD;">
+          <div style="font-family:'Marcellus',serif;font-size:20px;">Quibe recheado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cardápio : signature dishes -->
+  <section id="cardapio" style="max-width:1160px;margin:0 auto;padding:64px 40px 24px;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:12px;">Os queridinhos do cardápio</div>
+      <h2 style="font-family:'Marcellus',serif;font-size:44px;line-height:1.05;margin:0;font-weight:400;">Sabores que fazem<br>o cliente voltar</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px;">
+      <div style="display:flex;gap:18px;padding:22px 0;border-bottom:1px solid #d3c4a6;">
+        <div style="font-family:'Marcellus',serif;font-size:22px;color:#C98A2B;min-width:34px;">01</div>
+        <div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="font-family:'Marcellus',serif;font-size:22px;">Shawarma de Carne</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#B0472B;font-weight:700;">Lanche</span></div><p style="font-size:14px;line-height:1.55;color:#4a3f30;margin:6px 0 0;">Carne bovina temperada à moda árabe, molho de gergelim, tomate, cebola e salsinha, enrolados no pão libanês.</p></div>
+      </div>
+      <div style="display:flex;gap:18px;padding:22px 0;border-bottom:1px solid #d3c4a6;">
+        <div style="font-family:'Marcellus',serif;font-size:22px;color:#C98A2B;min-width:34px;">02</div>
+        <div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="font-family:'Marcellus',serif;font-size:22px;">Charuto de Folha de Uva</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#B0472B;font-weight:700;">Prato Quente</span></div><p style="font-size:14px;line-height:1.55;color:#4a3f30;margin:6px 0 0;">Arroz com carne bovina moída e especiarias árabes, enroladinho na folha de uva.</p></div>
+      </div>
+      <div style="display:flex;gap:18px;padding:22px 0;border-bottom:1px solid #d3c4a6;">
+        <div style="font-family:'Marcellus',serif;font-size:22px;color:#C98A2B;min-width:34px;">03</div>
+        <div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="font-family:'Marcellus',serif;font-size:22px;">Falafel</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#B0472B;font-weight:700;">Prato Quente</span></div><p style="font-size:14px;line-height:1.55;color:#4a3f30;margin:6px 0 0;">Bolinho frito de fava e grão-de-bico, com molho de gergelim, tomate e salsinha, e cesto de pães.</p></div>
+      </div>
+      <div style="display:flex;gap:18px;padding:22px 0;border-bottom:1px solid #d3c4a6;">
+        <div style="font-family:'Marcellus',serif;font-size:22px;color:#C98A2B;min-width:34px;">04</div>
+        <div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="font-family:'Marcellus',serif;font-size:22px;">Prato Árabe Executivo</span><span style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#B0472B;font-weight:700;">Executivo</span></div><p style="font-size:14px;line-height:1.55;color:#4a3f30;margin:6px 0 0;">Monte o seu: 2 pratos frios, 2 pratos quentes e 1 acompanhamento.</p></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;"><a href="cardapio.html" style="display:inline-block;background:#B0472B;color:#F4ECDD;padding:15px 30px;border-radius:2px;font-weight:700;font-size:15px;letter-spacing:0.03em;">Ver cardápio completo →</a></div>
+  </section>
+
+  <!-- Palavra do dono : Bil Rajab -->
+  <section style="position:relative;margin-top:64px;overflow:hidden;">
+    <img src="assets/alibabar/g05.jpg" alt="Mesa de folheados e mezze árabes" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:rgba(20,15,11,.8);"></div>
+    <div style="position:relative;max-width:900px;margin:0 auto;padding:80px 40px;text-align:center;color:#F4ECDD;">
+      <div style="width:56px;height:56px;margin:0 auto 26px;background:#C98A2B;color:#2A211A;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:'Marcellus',serif;font-size:40px;line-height:0;padding-top:14px;">”</div>
+      <p style="font-family:'Marcellus',serif;font-size:30px;line-height:1.45;margin:0 auto;max-width:760px;font-weight:400;">De família de origem libanesa, todas as receitas são coordenadas pela D. Latife, libanesa de sangue, que garante aquele toque final na comida — que um árabe reconhece de longe e o brasileiro nunca mais esquece.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:34px;">
+        <img src="assets/alibabar/bil-rajab.png" alt="Bil Rajab" style="width:76px;height:76px;object-fit:cover;border:3px solid #C98A2B;border-radius:50%;">
+        <div style="font-family:'Amiri',serif;font-style:italic;font-size:26px;color:#E8C169;">Bil Rajab</div>
+        <div style="font-size:13px;opacity:.75;letter-spacing:0.12em;text-transform:uppercase;">Idealizador do Alibabar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores & horários -->
+  <section id="valores" style="max-width:1160px;margin:0 auto;padding:56px 40px 24px;">
+    <div style="text-align:center;margin-bottom:38px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:12px;">Valores &amp; horários</div>
+      <h2 style="font-family:'Marcellus',serif;font-size:44px;line-height:1.05;margin:0;font-weight:400;">Escolha o seu jeito<br>de aproveitar</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+      <div style="background:#F4ECDD;border:1px solid #d3c4a6;border-top:4px solid #B0472B;border-radius:4px;padding:30px 28px;">
+        <div style="font-family:'Marcellus',serif;font-size:26px;margin-bottom:4px;">Rodízio à vontade</div>
+        <div style="font-size:13px;color:#8a7c66;margin-bottom:20px;">Mais de 15 opções · terça a domingo</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;"><span style="font-family:'Marcellus',serif;font-size:34px;color:#B0472B;">R$ 83,90</span><span style="font-size:13px;color:#4a3f30;">Ter a Qui</span></div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:20px;"><span style="font-family:'Marcellus',serif;font-size:34px;color:#B0472B;">R$ 93,90</span><span style="font-size:13px;color:#4a3f30;">Sex a Dom e feriados</span></div>
+        <div style="font-size:13px;line-height:1.7;color:#4a3f30;border-top:1px solid #d3c4a6;padding-top:14px;">Ter–Qui e Dom · 12h às 19h30<br>Sex e Sáb · 12h à meia-noite</div>
+      </div>
+      <div style="background:#F4ECDD;border:1px solid #d3c4a6;border-top:4px solid #C98A2B;border-radius:4px;padding:30px 28px;">
+        <div style="font-family:'Marcellus',serif;font-size:26px;margin-bottom:4px;">Buffet à vontade</div>
+        <div style="font-size:13px;color:#8a7c66;margin-bottom:20px;">Almoço · pague uma vez, coma à vontade</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;"><span style="font-family:'Marcellus',serif;font-size:34px;color:#B0472B;">R$ 66,90</span><span style="font-size:13px;color:#4a3f30;">Ter a Sex</span></div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:20px;"><span style="font-family:'Marcellus',serif;font-size:34px;color:#B0472B;">R$ 76,90</span><span style="font-size:13px;color:#4a3f30;">Sábado</span></div>
+        <div style="font-size:13px;line-height:1.7;color:#4a3f30;border-top:1px solid #d3c4a6;padding-top:14px;">Ter–Sex · 11h30 às 15h<br>Sáb · 11h30 às 16h</div>
+      </div>
+      <div style="background:#F4ECDD;border:1px solid #d3c4a6;border-top:4px solid #2E4A34;border-radius:4px;padding:30px 28px;">
+        <div style="font-family:'Marcellus',serif;font-size:26px;margin-bottom:4px;">Buffet por Kilo</div>
+        <div style="font-size:13px;color:#8a7c66;margin-bottom:20px;">Almoço · pague o quanto comer</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;"><span style="font-family:'Marcellus',serif;font-size:34px;color:#B0472B;">R$ 89,90</span><span style="font-size:13px;color:#4a3f30;">Ter a Sex · o kg</span></div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:20px;"><span style="font-family:'Marcellus',serif;font-size:34px;color:#B0472B;">R$ 99,90</span><span style="font-size:13px;color:#4a3f30;">Sábado · o kg</span></div>
+        <div style="font-size:13px;line-height:1.7;color:#4a3f30;border-top:1px solid #d3c4a6;padding-top:14px;">Ter–Sex · 11h30 às 15h<br>Sáb · 11h30 às 16h</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:12.5px;color:#8a7c66;margin-top:16px;">Valores e horários informados pela casa. Confirme no WhatsApp antes de visitar.</div>
+  </section>
+
+  <!-- Happy Hour -->
+  <section style="max-width:1160px;margin:0 auto;padding:64px 40px 24px;">
+    <div style="background:#2A211A;color:#F4ECDD;border-radius:6px;overflow:hidden;display:grid;grid-template-columns:1fr 1.1fr;">
+      <div style="padding:48px 46px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-family:'Amiri',serif;font-style:italic;font-size:24px;color:#E8C169;margin-bottom:6px;">Sua melhor opção para</div>
+        <h2 style="font-family:'Marcellus',serif;font-size:46px;line-height:1.02;margin:0 0 18px;font-weight:400;">Happy Hour</h2>
+        <p style="font-size:15.5px;line-height:1.7;color:#d8cbb2;margin:0 0 24px;max-width:440px;">Petiscos árabes, esfihas quentinhas, mezze e a cerveja gelada — do jeitinho que o fim de tarde pede. Venha sentir o sabor do Oriente Médio em Santana.</p>
+        <div style="display:grid;gap:12px;font-size:15px;margin-bottom:30px;">
+          <div style="display:flex;align-items:center;gap:12px;"><span style="color:#C98A2B;">✓</span> A melhor culinária árabe da região</div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="color:#C98A2B;">✓</span> Celebre momentos especiais com os amigos</div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="color:#C98A2B;">✓</span> Depois do trabalho, você merece!</div>
+        </div>
+        <div><a href="https://wa.me/551122830974" target="_blank" style="background:#C98A2B;color:#2A211A;padding:15px 28px;border-radius:2px;font-weight:700;letter-spacing:0.03em;">Garanta sua reserva</a></div>
+      </div>
+      <div style="position:relative;min-height:440px;"><img src="assets/alibabar/happy-hour.png" alt="Mesa farta de petiscos árabes com cerveja no Happy Hour" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+    </div>
+  </section>
+
+  <!-- Experience full-bleed band -->
+  <section id="experiencia" style="position:relative;margin-top:64px;min-height:460px;display:flex;align-items:center;overflow:hidden;">
+    <img src="assets/alibabar/g06.jpg" alt="Dança do ventre no salão do Alibabar" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(42,33,26,.86) 0%,rgba(42,33,26,.62) 45%,rgba(42,33,26,.28) 100%);"></div>
+    <div style="position:relative;max-width:1160px;margin:0 auto;padding:56px 40px;width:100%;">
+      <div style="max-width:520px;color:#F4ECDD;">
+        <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#E8C169;font-weight:700;margin-bottom:16px;">Mais que um jantar</div>
+        <h2 style="font-family:'Marcellus',serif;font-size:46px;line-height:1.05;margin:0 0 18px;font-weight:400;">Uma noite árabe<br>em Santana</h2>
+        <p style="font-size:17px;line-height:1.6;opacity:.92;margin:0 0 20px;">Música, dança do ventre e o salão cheio: no Alibabar, a refeição vira celebração. E ainda tem <strong>Happy Hour</strong> com petiscos árabes e drinks para fechar o dia.</p>
+        <p style="font-size:14px;line-height:1.6;opacity:.82;margin:0 0 28px;">Dança do ventre com <strong style="color:#E8C169;">Esther Levisky</strong>, <strong style="color:#E8C169;">Ana Claudia Borges</strong> e <strong style="color:#E8C169;">Hadara Nur</strong>.</p>
+        <a href="https://wa.me/551122830974" target="_blank" style="background:#C98A2B;color:#2A211A;padding:15px 26px;border-radius:2px;font-weight:700;letter-spacing:0.03em;">Reservar uma mesa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dançarinas -->
+  <section id="dancarinas" style="max-width:1160px;margin:0 auto;padding:72px 40px 24px;">
+    <div style="text-align:center;margin-bottom:44px;">
+      <div style="font-family:'Amiri',serif;font-style:italic;font-size:24px;color:#B0472B;margin-bottom:6px;">Conheça as nossas</div>
+      <h2 style="font-family:'Marcellus',serif;font-size:46px;line-height:1.05;margin:0;font-weight:400;">Dançarinas</h2>
+      <p style="font-size:15px;line-height:1.6;color:#4a3f30;max-width:520px;margin:16px auto 0;">A dança do ventre dá o tom das nossas noites árabes. Reserve uma mesa e viva o espetáculo de perto.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;">
+      <div style="text-align:center;">
+        <img src="assets/alibabar/dancarina-esther.png" alt="Esther Levisky, dançarina do ventre" style="display:block;width:100%;height:380px;object-fit:cover;object-position:top center;border-radius:4px;box-shadow:0 22px 44px -26px rgba(42,33,26,.55);">
+        <div style="font-family:'Marcellus',serif;font-size:24px;margin-top:20px;">Esther Levisky</div>
+        <div style="font-size:13px;color:#8a7c66;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Dançarina do ventre</div>
+      </div>
+      <div style="text-align:center;">
+        <img src="assets/alibabar/dancarina-ana.png" alt="Ana Claudia Borges, dançarina do ventre" style="display:block;width:100%;height:380px;object-fit:cover;object-position:top center;border-radius:4px;box-shadow:0 22px 44px -26px rgba(42,33,26,.55);">
+        <div style="font-family:'Marcellus',serif;font-size:24px;margin-top:20px;">Ana Claudia Borges</div>
+        <div style="font-size:13px;color:#8a7c66;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Dançarina do ventre</div>
+      </div>
+      <div style="text-align:center;">
+        <img src="assets/alibabar/dancarina-hadara.png" alt="Hadara Nur, dançarina do ventre" style="display:block;width:100%;height:380px;object-fit:cover;object-position:top center;border-radius:4px;box-shadow:0 22px 44px -26px rgba(42,33,26,.55);">
+        <div style="font-family:'Marcellus',serif;font-size:24px;margin-top:20px;">Hadara Nur</div>
+        <div style="font-size:13px;color:#8a7c66;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Dançarina do ventre</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof band -->
+  <section style="background:#2E4A34;color:#F4ECDD;">
+    <div style="max-width:1160px;margin:0 auto;padding:56px 40px;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;">
+      <div style="text-align:center;border-right:1px solid rgba(244,236,221,.25);padding-right:56px;">
+        <div style="font-family:'Marcellus',serif;font-size:72px;line-height:1;color:#E8C169;">4,4</div>
+        <div style="color:#C98A2B;font-size:18px;letter-spacing:2px;margin:8px 0;">★★★★<span style="opacity:.4;">★</span></div>
+        <div style="font-size:13px;opacity:.85;">2.085 avaliações no Google</div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:#E8C169;font-weight:700;margin-bottom:16px;">O que dizem à mesa</div>
+        <p style="font-family:'Amiri',serif;font-style:italic;font-size:26px;line-height:1.4;margin:0 0 20px;max-width:760px;">“Ambiente agradável, comida deliciosa e muito fresca, pedimos rodízio e tivemos uma ótima experiência.”</p>
+        <div style="font-size:13px;opacity:.75;margin-bottom:22px;">Priscila M. dos Anjos · ★★★★★ no Google</div>
+        <p style="font-family:'Amiri',serif;font-style:italic;font-size:20px;line-height:1.45;margin:0;max-width:760px;opacity:.92;">“Um dos melhores restaurantes árabes que já visitei. Buffet e à la carte, tudo extremamente fresco e saboroso.”</p>
+        <div style="font-size:13px;opacity:.75;margin-top:12px;">Hiba Abounassif · ★★★★★ no Google</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section id="visita" style="max-width:1160px;margin:0 auto;padding:64px 40px 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+    <div>
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:#B0472B;font-weight:700;margin-bottom:18px;">Venha nos visitar</div>
+      <h2 style="font-family:'Marcellus',serif;font-size:44px;line-height:1.05;margin:0 0 28px;font-weight:400;">Santana, São Paulo</h2>
+      <div style="font-size:16px;line-height:1.9;color:#4a3f30;">
+        <div><strong style="color:#2A211A;">Endereço</strong> · Rua Dr. César, 131 — Santana, São Paulo · CEP 02013-001</div>
+        <div><strong style="color:#2A211A;">Horário</strong> · Seg a Qui 10h–23h · Sex e Sáb 10h–00h</div>
+        <div><strong style="color:#2A211A;">Reservas · WhatsApp</strong> · <a href="https://wa.me/551122830974" target="_blank">(11) 2283-0974</a></div>
+        <div><strong style="color:#2A211A;">Pedidos · Telefone</strong> · <a href="tel:+551122834008">(11) 2283-4008</a></div>
+        <div><strong style="color:#2A211A;">E-mail</strong> · <a href="mailto:contato@alibabar.com.br">contato@alibabar.com.br</a></div>
+        <div><strong style="color:#2A211A;">Instagram</strong> · <a href="https://instagram.com/alibabaroficial" target="_blank">@alibabaroficial</a></div>
+      </div>
+      <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;">
+        <a href="https://wa.me/551122830974" target="_blank" style="background:#B0472B;color:#F4ECDD;padding:16px 28px;border-radius:2px;font-weight:700;">Reservar pelo WhatsApp</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Alibabar+Rua+Dr+Cesar+131+Santana+Sao+Paulo" target="_blank" style="border:1.5px solid #2A211A;color:#2A211A;padding:15px 28px;border-radius:2px;font-weight:600;">Ver no mapa</a>
+      </div>
+    </div>
+    <div style="position:relative;min-height:360px;border-radius:4px;overflow:hidden;box-shadow:0 24px 48px -28px rgba(42,33,26,.5);">
+      <iframe title="Mapa Alibabar" src="https://maps.google.com/maps?q=R.%20Dr.%20C%C3%A9sar%2C%20131%20-%20Santana%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002013-001&t=m&z=16&output=embed&iwloc=near" style="position:absolute;inset:0;width:100%;height:100%;border:0;" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <div style="text-align:center;color:#C98A2B;font-size:20px;letter-spacing:8px;padding:20px 0 8px;">✦ ❖ ✦</div>
+
+  <footer style="max-width:1160px;margin:0 auto;padding:24px 40px 64px;border-top:1px solid #d3c4a6;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="assets/alibabar/logo.png" alt="Alibabar Cozinha Árabe" style="height:42px;width:auto;display:block;">
+      <span style="font-size:13px;color:#8a7c66;">Culinária árabe · Santana, SP</span>
+    </div>
+    <div style="font-size:13px;color:#8a7c66;">Rua Dr. César, 131 — Santana · (11) 2283-4008 · contato@alibabar.com.br</div>
+    <div style="display:flex;gap:18px;align-items:center;font-size:13px;">
+      <a href="https://www.instagram.com/alibabaroficial/" target="_blank" style="color:#B0472B;font-weight:600;">Instagram</a>
+      <a href="https://www.facebook.com/alibabaroficial" target="_blank" style="color:#B0472B;font-weight:600;">Facebook</a>
+      <a href="https://www.tiktok.com/@alibabarcozinhaarabe" target="_blank" style="color:#B0472B;font-weight:600;">TikTok</a>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/551122830974" target="_blank" aria-label="Falar no WhatsApp" style="position:fixed;right:26px;bottom:26px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -8px rgba(37,211,102,.7);">
+    <svg width="34" height="34" viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M16.003 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.257.593 4.463 1.72 6.407L3.2 28.8l6.567-1.72a12.74 12.74 0 0 0 6.236 1.588h.005c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.332-6.635-3.752-9.055A12.72 12.72 0 0 0 16.003 3.2Zm0 23.36h-.004a10.6 10.6 0 0 1-5.4-1.48l-.387-.23-4.007 1.05 1.07-3.906-.252-.4a10.56 10.56 0 0 1-1.62-5.64c0-5.867 4.774-10.64 10.646-10.64 2.842 0 5.513 1.108 7.52 3.118a10.57 10.57 0 0 1 3.115 7.526c0 5.867-4.773 10.64-10.634 10.64Zm5.834-7.968c-.32-.16-1.892-.933-2.185-1.04-.293-.107-.507-.16-.72.16-.213.32-.826 1.04-1.013 1.253-.187.213-.373.24-.693.08-.32-.16-1.35-.498-2.57-1.586-.95-.847-1.592-1.893-1.779-2.213-.186-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.734-.986-2.374-.26-.623-.523-.539-.72-.549l-.613-.011a1.18 1.18 0 0 0-.853.4c-.293.32-1.12 1.094-1.12 2.667 0 1.573 1.146 3.093 1.306 3.306.16.213 2.253 3.44 5.46 4.824.763.33 1.358.527 1.822.674.766.244 1.463.21 2.014.127.614-.092 1.892-.773 2.158-1.52.267-.746.267-1.386.187-1.52-.08-.133-.293-.213-.613-.373Z"/></svg>
+  </a>
+
+</div>
+</x-dc>
+</body>
+</html>
